@@ -6,7 +6,7 @@
 <title>Univerce — Brand Identity</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Akt:wght@100..900&family=Barlow:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Figtree:ital,wght@0,300..900;1,300..900&family=Gloock&family=Inter+Tight:ital,wght@0,100..900;1,100..900&family=Manrope:wght@200..800&family=Onest:wght@100..900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..900&family=Gloock&family=Inter:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 <style>
   :root{
     --obsidian:#0D0D12;
@@ -55,8 +55,8 @@
     color:var(--gold);margin:0 0 22px;
   }
   h1.thesis{
-    font-family:'Bricolage Grotesque';font-weight:800;font-optical-sizing:auto;
-    font-size:clamp(40px,7vw,74px);line-height:1.02;letter-spacing:-0.02em;margin:0 0 28px;
+    font-family:'Gloock',serif;font-weight:400;
+    font-size:clamp(42px,7.2vw,80px);line-height:1.06;letter-spacing:-0.005em;margin:0 0 28px;
     max-width:11ch;
   }
   .lede{font-size:19px;line-height:1.6;color:var(--bone-dim);max-width:58ch;margin:0;}
@@ -300,10 +300,14 @@
       <span class="chapter-num">04</span>
       <h2 class="chapter-title">Typography</h2>
     </div>
-    <p class="chapter-intro">Three faces, three jobs — no overlap, no decoration.</p>
+    <p class="chapter-intro">Four faces now, still no overlap. Gloock is reserved for exactly one job — it's a single-weight serif, so it can't carry a hierarchy on its own.</p>
 
     <div class="type-spec">
-      <div class="type-label"><span class="role">Bricolage Grotesque</span><span class="job">Display — headlines, wordmark, big numbers</span></div>
+      <div class="type-label"><span class="role">Gloock</span><span class="job">Hero display — the one big heading per page, nothing else</span></div>
+      <div class="display-sample" style="font-family:'Gloock',serif;font-weight:400;letter-spacing:-0.005em;">Velvet rope, loud room.</div>
+    </div>
+    <div class="type-spec">
+      <div class="type-label"><span class="role">Bricolage Grotesque</span><span class="job">Heading — chapter titles, UI headers, big numbers</span></div>
       <div class="display-sample">Loud once you're in.</div>
     </div>
     <div class="type-spec">
@@ -314,6 +318,8 @@
       <div class="type-label"><span class="role">Space Mono</span><span class="job">Data — scores, streaks, timestamps, chapter numbers</span></div>
       <div class="mono-sample">CAMPUS RANK 004 · STREAK 07 · 11:42 PM</div>
     </div>
+
+    <p class="rivalry-note" style="margin:0 0 28px;">Gloock ships in one weight (400, Regular) with no bold or black cut — use it once per screen, at large size, for the single most important line. Everything below it in hierarchy — subheads, UI labels, buttons — goes back to Bricolage Grotesque, which has the weight range to actually build a scale.</p>
 
     <div class="scale-ramp">
       <div class="scale-row"><span class="tag">H1 / 64px</span><span class="sample-text" style="font-size:34px;">Campus feed</span></div>
