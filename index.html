@@ -1,6 +1,492 @@
 <!DOCTYPE html>
 <html lang="en">
+<head><!DOCTYPE html>
+<html lang="en">
 <head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Univerce — Brand Identity</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&family=Gloock&family=Inter:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --obsidian:#0D0D12;
+    --slate:#17171F;
+    --slate-2:#1E1E27;
+    --bone:#F5F0E6;
+    --bone-dim:rgba(245,240,230,0.62);
+    --bone-faint:rgba(245,240,230,0.14);
+    --gold:#C9A65C;
+    --gold-dim:rgba(201,166,92,0.35);
+    --coral:#FF5A4E;
+    --coral-wash:rgba(255,90,78,0.12);
+    --violet:#6E5BFF;
+    --violet-wash:rgba(110,91,255,0.14);
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--obsidian);
+    color:var(--bone);
+    font-family:'Inter',sans-serif;
+    -webkit-font-smoothing:antialiased;
+  }
+  ::selection{background:var(--gold-dim);color:var(--bone);}
+  a{color:var(--gold);}
+  :focus-visible{outline:2px solid var(--gold);outline-offset:3px;}
+
+  .mast{
+    position:sticky;top:0;z-index:50;
+    display:flex;align-items:center;justify-content:space-between;
+    padding:14px 28px;
+    background:rgba(13,13,18,0.86);
+    backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--gold-dim);
+  }
+  .mast-mark{font-family:'Bricolage Grotesque';font-weight:800;font-size:15px;letter-spacing:0.01em;}
+  .mast-mark .dot{color:var(--gold);}
+  .mast-doc{font-family:'Space Mono';font-size:11px;letter-spacing:0.08em;color:var(--bone-dim);text-transform:uppercase;}
+
+  .wrap{max-width:900px;margin:0 auto;padding:0 28px;}
+
+  .hero{padding:96px 0 72px;border-bottom:1px solid var(--bone-faint);}
+  .eyebrow{
+    font-family:'Space Mono';font-size:12px;letter-spacing:0.16em;text-transform:uppercase;
+    color:var(--gold);margin:0 0 22px;
+  }
+  h1.thesis{
+    font-family:'Gloock',serif;font-weight:400;
+    font-size:clamp(42px,7.2vw,80px);line-height:1.06;letter-spacing:-0.005em;margin:0 0 28px;
+    max-width:11ch;
+  }
+  .lede{font-size:19px;line-height:1.6;color:var(--bone-dim);max-width:58ch;margin:0;}
+
+  .chapter{padding:72px 0;border-bottom:1px solid var(--bone-faint);}
+  .chapter-head{display:flex;gap:18px;align-items:baseline;margin-bottom:36px;}
+  .chapter-num{font-family:'Space Mono';color:var(--gold);font-size:13px;letter-spacing:0.05em;}
+  h2.chapter-title{
+    font-family:'Bricolage Grotesque';font-weight:700;font-size:clamp(26px,3.5vw,36px);
+    letter-spacing:-0.01em;margin:0;
+  }
+  .chapter-intro{font-size:16px;line-height:1.7;color:var(--bone-dim);max-width:62ch;margin:0 0 40px;}
+
+  /* Pillars */
+  .pillars{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--bone-faint);border:1px solid var(--bone-faint);}
+  .pillar{background:var(--obsidian);padding:28px;}
+  .pillar h3{font-family:'Bricolage Grotesque';font-weight:700;font-size:19px;margin:0 0 10px;}
+  .pillar p{font-size:14.5px;line-height:1.6;color:var(--bone-dim);margin:0;}
+
+  /* Voice */
+  .voice-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:44px;}
+  .voice-pill{background:var(--slate);border:1px solid var(--bone-faint);border-radius:10px;padding:18px;}
+  .voice-pill .n{font-family:'Space Mono';font-size:11px;color:var(--gold);}
+  .voice-pill p{font-size:13.5px;line-height:1.5;color:var(--bone-dim);margin:8px 0 0;}
+
+  table.dodont{width:100%;border-collapse:collapse;margin-bottom:44px;}
+  table.dodont th{
+    text-align:left;font-family:'Space Mono';font-size:11px;letter-spacing:0.1em;text-transform:uppercase;
+    color:var(--bone-dim);padding:0 0 12px;border-bottom:1px solid var(--bone-faint);font-weight:400;
+  }
+  table.dodont td{padding:14px 18px 14px 0;font-size:14.5px;line-height:1.55;border-bottom:1px solid var(--bone-faint);vertical-align:top;}
+  table.dodont td.do{color:var(--bone);}
+  table.dodont td.dont{color:var(--bone-dim);}
+
+  .copy-samples{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+  .sample{background:var(--slate);border-radius:10px;padding:20px;border-left:3px solid var(--gold);}
+  .sample .tag{font-family:'Space Mono';font-size:10.5px;letter-spacing:0.08em;text-transform:uppercase;color:var(--gold);}
+  .sample p{margin:10px 0 0;font-size:15px;line-height:1.5;}
+
+  /* Color specimens */
+  .swatch-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:16px;}
+  .swatch{border-radius:12px;overflow:hidden;border:1px solid var(--bone-faint);background:var(--slate);}
+  .swatch-block{height:96px;}
+  .swatch-meta{padding:14px 16px;}
+  .swatch-meta .name{font-family:'Bricolage Grotesque';font-weight:700;font-size:15px;}
+  .swatch-meta .hex{font-family:'Space Mono';font-size:12px;color:var(--bone-dim);margin:2px 0 8px;}
+  .swatch-meta .use{font-size:12.5px;color:var(--bone-dim);line-height:1.45;}
+
+  .rivalry-note{font-size:15px;line-height:1.7;color:var(--bone-dim);max-width:62ch;margin:36px 0 24px;}
+  .scoreboard{
+    display:grid;grid-template-columns:1fr auto 1fr;align-items:center;
+    background:var(--slate);border-radius:14px;border:1px solid var(--bone-faint);overflow:hidden;
+  }
+  .sb-side{padding:26px 22px;}
+  .sb-side.a{background:var(--coral-wash);border-right:1px solid var(--bone-faint);}
+  .sb-side.b{background:var(--violet-wash);text-align:right;}
+  .sb-campus{font-family:'Space Mono';font-size:11px;letter-spacing:0.06em;text-transform:uppercase;color:var(--bone-dim);}
+  .sb-score{font-family:'Bricolage Grotesque';font-weight:800;font-size:34px;margin-top:4px;}
+  .sb-side.a .sb-score{color:var(--coral);}
+  .sb-side.b .sb-score{color:var(--violet);}
+  .sb-vs{padding:0 18px;color:var(--gold);}
+
+  /* Typography specimens */
+  .type-spec{border-top:1px solid var(--bone-faint);padding:32px 0;}
+  .type-spec:first-child{border-top:none;}
+  .type-label{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:14px;}
+  .type-label .role{font-family:'Space Mono';font-size:11px;letter-spacing:0.08em;text-transform:uppercase;color:var(--gold);}
+  .type-label .job{font-size:12.5px;color:var(--bone-dim);}
+  .display-sample{font-family:'Bricolage Grotesque';font-weight:800;font-size:clamp(32px,5vw,54px);letter-spacing:-0.02em;line-height:1.05;}
+  .body-sample{font-family:'Inter';font-size:17px;line-height:1.65;max-width:56ch;color:var(--bone-dim);}
+  .mono-sample{font-family:'Space Mono';font-size:15px;letter-spacing:0.02em;color:var(--bone);}
+
+  .scale-ramp{display:flex;flex-direction:column;gap:10px;margin-top:28px;}
+  .scale-row{display:flex;align-items:baseline;gap:18px;border-bottom:1px solid var(--bone-faint);padding-bottom:10px;}
+  .scale-row .tag{font-family:'Space Mono';font-size:11px;color:var(--bone-dim);width:110px;flex-shrink:0;}
+  .scale-row .sample-text{font-family:'Bricolage Grotesque';font-weight:700;}
+
+  /* Logo */
+  .logo-stage{
+    background:var(--slate);border-radius:14px;border:1px solid var(--bone-faint);
+    padding:64px 24px;display:flex;align-items:center;justify-content:center;margin-bottom:20px;
+  }
+  .wordmark{font-family:'Bricolage Grotesque';font-weight:800;font-size:56px;letter-spacing:-0.01em;color:var(--gold);position:relative;}
+  .symbol-row{display:flex;gap:24px;margin-top:8px;}
+  .symbol-card{background:var(--slate);border:1px solid var(--bone-faint);border-radius:12px;padding:28px;display:flex;flex-direction:column;align-items:center;gap:12px;flex:1;}
+  .symbol-card .cap{font-family:'Space Mono';font-size:11px;color:var(--bone-dim);text-align:center;}
+  .logo-caveat{font-size:13.5px;color:var(--bone-dim);margin-top:18px;line-height:1.6;border-left:2px solid var(--gold-dim);padding-left:14px;}
+
+  /* Icons */
+  .icon-row{display:flex;gap:16px;flex-wrap:wrap;margin-bottom:24px;}
+  .icon-tile{background:var(--slate);border:1px solid var(--bone-faint);border-radius:10px;width:72px;height:72px;display:flex;align-items:center;justify-content:center;}
+  .icon-rules{font-size:14.5px;line-height:1.7;color:var(--bone-dim);max-width:62ch;}
+
+  /* UI application */
+  .ui-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+  .ui-card{background:var(--slate);border:1px solid var(--bone-faint);border-radius:12px;padding:20px;}
+  .ui-label{font-family:'Space Mono';font-size:10.5px;letter-spacing:0.08em;text-transform:uppercase;color:var(--bone-dim);margin-bottom:14px;}
+  .notif{display:flex;gap:12px;align-items:flex-start;border-left:3px solid var(--coral);background:var(--coral-wash);border-radius:8px;padding:14px;}
+  .notif p{margin:0;font-size:14px;line-height:1.5;}
+  .notif .ts{font-family:'Space Mono';font-size:11px;color:var(--bone-dim);margin-top:6px;}
+  .chip{display:inline-flex;align-items:center;gap:6px;background:var(--gold-dim);color:var(--gold);border-radius:999px;padding:6px 12px;font-size:13px;font-weight:600;width:fit-content;}
+  .btn-row{display:flex;gap:10px;flex-wrap:wrap;}
+  .btn{font-family:'Inter';font-weight:600;font-size:14px;padding:11px 20px;border-radius:8px;border:none;cursor:default;}
+  .btn.gold{background:var(--gold);color:var(--obsidian);}
+  .btn.coral{background:var(--coral);color:var(--obsidian);}
+  .btn.ghost{background:transparent;border:1px solid var(--bone-faint);color:var(--bone);}
+  .streak{display:flex;align-items:center;gap:8px;}
+  .streak .num{font-family:'Space Mono';font-weight:700;font-size:20px;color:var(--coral);}
+
+  /* Motion */
+  .motion-cols{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+  .motion-card{background:var(--slate);border:1px solid var(--bone-faint);border-radius:12px;padding:22px;}
+  .motion-card h4{font-family:'Bricolage Grotesque';font-size:16px;margin:0 0 8px;}
+  .motion-card p{font-size:13.5px;line-height:1.6;color:var(--bone-dim);margin:0;}
+
+  footer{padding:56px 0 80px;}
+  footer p{font-size:13px;color:var(--bone-dim);}
+
+  @media (max-width:720px){
+    .pillars,.voice-grid,.swatch-grid,.ui-grid,.motion-cols,.copy-samples{grid-template-columns:1fr;}
+    .scoreboard{grid-template-columns:1fr;}
+    .sb-side.a{border-right:none;border-bottom:1px solid var(--bone-faint);}
+    .sb-side.b{text-align:left;}
+    .sb-vs{padding:14px 22px;}
+    .symbol-row{flex-direction:column;}
+  }
+  @media (prefers-reduced-motion:reduce){
+    html{scroll-behavior:auto;}
+  }
+</style>
+</head>
+<body>
+
+<div class="mast">
+  <div class="mast-mark">univer<span class="dot">c</span>e</div>
+  <div class="mast-doc">Brand Identity · Vol. 01</div>
+</div>
+
+<div class="wrap">
+
+  <section class="hero">
+    <p class="eyebrow">Brand Identity — Univerce</p>
+    <h1 class="thesis">Velvet rope, loud room.</h1>
+    <p class="lede">Univerce checks your student ID at the door. Everything past that door is tribal, loud, and unfiltered. Composed at the threshold, chaotic in the room — that tension is the entire brand, and every choice below is built to hold both at once.</p>
+  </section>
+
+  <!-- 01 POSITIONING -->
+  <section class="chapter">
+    <div class="chapter-head">
+      <span class="chapter-num">01</span>
+      <h2 class="chapter-title">Positioning</h2>
+    </div>
+    <p class="chapter-intro">
+      Univerce is the only feed that gates entry with a real, verified student ID. That single act of gatekeeping is what makes the noise inside mean something — a reaction from your campus carries weight because the person reacting is real, enrolled, and stuck at the same college as you. The brand should always read as two temperatures at once: composed at the door, unfiltered in the room. Gold never has to say "exclusive" out loud. The checkmark already said it.
+    </p>
+    <div class="pillars">
+      <div class="pillar">
+        <h3>Verified, not vague</h3>
+        <p>Every account ties to a real student ID. Status is proven, never implied — the brand doesn't oversell exclusivity because the verification gate already delivers it.</p>
+      </div>
+      <div class="pillar">
+        <h3>Campus is a jersey</h3>
+        <p>Inter-college rivalry — fests, sports days, bragging rights — is already real social currency. Univerce just gives it a live scoreboard.</p>
+      </div>
+      <div class="pillar">
+        <h3>Status is earned, not bought</h3>
+        <p>Streaks, badges, and campus rank come from activity, not payment. In this brand, gold always means "you did something" — never "you paid something."</p>
+      </div>
+      <div class="pillar">
+        <h3>Confident over corporate</h3>
+        <p>The app talks like a sharp senior, not a brand account. Dry, direct, in on the joke — never forced slang, never exclamation-point enthusiasm.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 02 VOICE -->
+  <section class="chapter">
+    <div class="chapter-head">
+      <span class="chapter-num">02</span>
+      <h2 class="chapter-title">Voice &amp; tone</h2>
+    </div>
+    <p class="chapter-intro">The voice carries the same duality as the visuals: restrained when it's talking about status or verification, loose and needling when it's talking about rivalry.</p>
+
+    <div class="voice-grid">
+      <div class="voice-pill"><span class="n">SHORT</span><p>Say it in one sentence. If it needs a second, cut the first.</p></div>
+      <div class="voice-pill"><span class="n">DIRECT</span><p>Name what happened. No hedging, no "just wanted to."</p></div>
+      <div class="voice-pill"><span class="n">TRIBAL</span><p>Talk about "your campus," never "our platform."</p></div>
+      <div class="voice-pill"><span class="n">DRY</span><p>Wit over enthusiasm. Let confidence read as calm, not loud.</p></div>
+    </div>
+
+    <table class="dodont">
+      <tr><th>Do</th><th>Don't</th></tr>
+      <tr><td class="do">Address the reader directly — "you," "your campus"</td><td class="dont">Talk about the platform in third person — "Univerce believes…"</td></tr>
+      <tr><td class="do">Let confidence imply status</td><td class="dont">State it outright — "elite," "premium," "exclusive"</td></tr>
+      <tr><td class="do">Use campus-specific stakes — rivalry, rank, streaks</td><td class="dont">Generic gamification language — "points," "XP," "level up"</td></tr>
+      <tr><td class="do">Plain verbs — "post," "react," "verify"</td><td class="dont">Corporate verbs — "leverage," "empower," "seamlessly"</td></tr>
+      <tr><td class="do">Errors that state exactly what went wrong</td><td class="dont">Apologetic errors — "Oops! Something went wrong!"</td></tr>
+    </table>
+
+    <div class="copy-samples">
+      <div class="sample"><span class="tag">Verification prompt</span><p>Flash your student ID. We'll handle the velvet rope.</p></div>
+      <div class="sample"><span class="tag">Verification success</span><p>You're in. Welcome to your campus's side of Univerce.</p></div>
+      <div class="sample"><span class="tag">Rivalry notification</span><p>Rival campus just pulled ahead. Yours has gone quiet — fix that.</p></div>
+      <div class="sample"><span class="tag">Empty state</span><p>Nothing here yet. Say something your campus will screenshot.</p></div>
+      <div class="sample"><span class="tag">Streak</span><p>7 days straight. Your campus is starting to notice you.</p></div>
+      <div class="sample"><span class="tag">Verification error</span><p>That ID didn't verify. Try again with better lighting — we need to actually see it.</p></div>
+    </div>
+  </section>
+
+  <!-- 03 COLOR -->
+  <section class="chapter">
+    <div class="chapter-head">
+      <span class="chapter-num">03</span>
+      <h2 class="chapter-title">Color system</h2>
+    </div>
+    <p class="chapter-intro">Six colors, three jobs. Obsidian and Bone build the quiet container. Gold marks anything earned or verified — used sparingly, never as decoration. Coral and Violet exist for exactly one purpose: rivalry.</p>
+
+    <div class="swatch-grid">
+      <div class="swatch"><div class="swatch-block" style="background:var(--obsidian);"></div><div class="swatch-meta"><div class="name">Obsidian</div><div class="hex">#0D0D12</div><div class="use">Primary canvas. Near-black with a cool undertone — never pure #000, which reads cheap on OLED.</div></div></div>
+      <div class="swatch"><div class="swatch-block" style="background:var(--slate);"></div><div class="swatch-meta"><div class="name">Slate</div><div class="hex">#17171F</div><div class="use">Surface / card elevation one level above the canvas.</div></div></div>
+      <div class="swatch"><div class="swatch-block" style="background:var(--bone);"></div><div class="swatch-meta"><div class="name">Bone</div><div class="hex">#F5F0E6</div><div class="use">Primary text. Warm off-white, not stark white — softer on dark backgrounds at scale.</div></div></div>
+      <div class="swatch"><div class="swatch-block" style="background:var(--gold);"></div><div class="swatch-meta"><div class="name">Verified Gold</div><div class="hex">#C9A65C</div><div class="use">Earned-status signal only — badges, verification marks, chapter numbers. Never a general UI accent.</div></div></div>
+      <div class="swatch"><div class="swatch-block" style="background:var(--coral);"></div><div class="swatch-meta"><div class="name">Rivalry Coral</div><div class="hex">#FF5A4E</div><div class="use">One rivalry-side color. Reactions, streaks, "home" campus assignment.</div></div></div>
+      <div class="swatch"><div class="swatch-block" style="background:var(--violet);"></div><div class="swatch-meta"><div class="name">Rivalry Violet</div><div class="hex">#6E5BFF</div><div class="use">The opposing rivalry-side color. Assigned to whichever campus is "away" in a given matchup.</div></div></div>
+    </div>
+
+    <p class="rivalry-note"><strong style="color:var(--bone);">The rivalry system:</strong> every campus that crosses a verified-user threshold gets auto-assigned Coral or Violet — arbitrarily, like a jersey color. The assignment doesn't need to mean anything; the point is that your campus has one and the rival campus has the other. This is the only place in the identity where color turns tribal and personal, which is exactly why it should never leak into general UI — it stays scarce so it stays meaningful.</p>
+
+    <div class="scoreboard">
+      <div class="sb-side a"><div class="sb-campus">Amity Mohali</div><div class="sb-score">1,204</div></div>
+      <div class="sb-vs">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M13 2L4 14h6l-1 8 9-12h-6z" fill="currentColor"/></svg>
+      </div>
+      <div class="sb-side b"><div class="sb-campus">Chandigarh University</div><div class="sb-score">1,187</div></div>
+    </div>
+  </section>
+
+  <!-- 04 TYPOGRAPHY -->
+  <section class="chapter">
+    <div class="chapter-head">
+      <span class="chapter-num">04</span>
+      <h2 class="chapter-title">Typography</h2>
+    </div>
+    <p class="chapter-intro">Four faces now, still no overlap. Gloock is reserved for exactly one job — it's a single-weight serif, so it can't carry a hierarchy on its own.</p>
+
+    <div class="type-spec">
+      <div class="type-label"><span class="role">Gloock</span><span class="job">Hero display — the one big heading per page, nothing else</span></div>
+      <div class="display-sample" style="font-family:'Gloock',serif;font-weight:400;letter-spacing:-0.005em;">Velvet rope, loud room.</div>
+    </div>
+    <div class="type-spec">
+      <div class="type-label"><span class="role">Bricolage Grotesque</span><span class="job">Heading — chapter titles, UI headers, big numbers</span></div>
+      <div class="display-sample">Loud once you're in.</div>
+    </div>
+    <div class="type-spec">
+      <div class="type-label"><span class="role">Inter</span><span class="job">Body — everything the product actually says</span></div>
+      <div class="body-sample">Nobody should have to work to read a notification. Inter runs the real UI: paragraphs, settings, onboarding copy — clean and quiet so Bricolage and the rivalry colors are the only things that ever shout.</div>
+    </div>
+    <div class="type-spec">
+      <div class="type-label"><span class="role">Space Mono</span><span class="job">Data — scores, streaks, timestamps, chapter numbers</span></div>
+      <div class="mono-sample">CAMPUS RANK 004 · STREAK 07 · 11:42 PM</div>
+    </div>
+
+    <p class="rivalry-note" style="margin:0 0 28px;">Gloock ships in one weight (400, Regular) with no bold or black cut — use it once per screen, at large size, for the single most important line. Everything below it in hierarchy — subheads, UI labels, buttons — goes back to Bricolage Grotesque, which has the weight range to actually build a scale.</p>
+
+    <div class="scale-ramp">
+      <div class="scale-row"><span class="tag">H1 / 64px</span><span class="sample-text" style="font-size:34px;">Campus feed</span></div>
+      <div class="scale-row"><span class="tag">H2 / 40px</span><span class="sample-text" style="font-size:26px;">Campus feed</span></div>
+      <div class="scale-row"><span class="tag">H3 / 28px</span><span class="sample-text" style="font-size:20px;font-weight:700;">Campus feed</span></div>
+      <div class="scale-row"><span class="tag">Body / 16px</span><span style="font-family:'Inter';font-size:16px;">Campus feed</span></div>
+      <div class="scale-row"><span class="tag">Caption / 13px</span><span style="font-family:'Space Mono';font-size:13px;">CAMPUS FEED</span></div>
+    </div>
+  </section>
+
+  <!-- 05 LOGO -->
+  <section class="chapter">
+    <div class="chapter-head">
+      <span class="chapter-num">05</span>
+      <h2 class="chapter-title">Logo &amp; symbol</h2>
+    </div>
+    <p class="chapter-intro">All-lowercase wordmark — confident, not shouting. The symbol is a standalone verified mark that can run alone as an app icon or profile ring.</p>
+
+    <div class="logo-stage">
+      <div class="wordmark">univerce</div>
+    </div>
+
+    <div class="symbol-row">
+      <div class="symbol-card">
+        <svg width="56" height="56" viewBox="0 0 24 24">
+          <circle cx="12" cy="12" r="10" fill="#C9A65C"/>
+          <path d="M7.5 12.5l2.8 2.8L16.5 9" stroke="#0D0D12" stroke-width="2.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <div class="cap">Verified mark — app icon, profile ring, badge</div>
+      </div>
+      <div class="symbol-card">
+        <svg width="72" height="56" viewBox="0 0 48 24">
+          <circle cx="12" cy="12" r="10" fill="none" stroke="#FF5A4E" stroke-width="2"/>
+          <circle cx="36" cy="12" r="10" fill="none" stroke="#6E5BFF" stroke-width="2"/>
+        </svg>
+        <div class="cap">Rivalry pairing — two campuses, two rings</div>
+      </div>
+    </div>
+
+    <p class="logo-caveat">Directional concept, not a production file. For final vector work: the verified mark is designed to eventually sit in the wordmark's negative space — most naturally replacing the tittle on the second "i" — but that placement needs a type designer working in the actual font outlines, not raw SVG text positioning.</p>
+  </section>
+
+  <!-- 06 ICONOGRAPHY -->
+  <section class="chapter">
+    <div class="chapter-head">
+      <span class="chapter-num">06</span>
+      <h2 class="chapter-title">Iconography</h2>
+    </div>
+    <p class="chapter-intro">Outline is the resting state of exclusivity. Fill is the reward state of activity.</p>
+
+    <div class="icon-row">
+      <div class="icon-tile">
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#F5F0E6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 11L12 4l8 7"/><path d="M6 10v9h5v-5h2v5h5v-9"/>
+        </svg>
+      </div>
+      <div class="icon-tile">
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#F5F0E6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.5 3.6-7 8-7s8 2.5 8 7"/>
+        </svg>
+      </div>
+      <div class="icon-tile">
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="#FF5A4E">
+          <path d="M12 2c1 4-3 5-3 9a3 3 0 006 0c0-2-1-3-1-5 2 2 3 4 3 7a5 5 0 01-10 0c0-5 3-7 5-11z"/>
+        </svg>
+      </div>
+      <div class="icon-tile">
+        <svg width="26" height="26" viewBox="0 0 24 24">
+          <circle cx="12" cy="12" r="10" fill="#C9A65C"/>
+          <path d="M7.5 12.5l2.8 2.8L16.5 9" stroke="#0D0D12" stroke-width="2.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <div class="icon-tile">
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#F5F0E6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M13 2L4 14h6l-1 8 9-12h-6z"/>
+        </svg>
+      </div>
+    </div>
+    <p class="icon-rules">2px stroke weight throughout. Rounded line caps keep the resting outline set approachable rather than clinical; corner joins stay sharp at 90°+ angles so the set doesn't drift bubbly or toy-like. Icons only fill when they represent something active or earned — a verified badge, a lit streak flame — never as a default decorative style.</p>
+  </section>
+
+  <!-- 07 UI APPLICATION -->
+  <section class="chapter">
+    <div class="chapter-head">
+      <span class="chapter-num">07</span>
+      <h2 class="chapter-title">In application</h2>
+    </div>
+    <p class="chapter-intro">How the system behaves once it's actually doing product work.</p>
+
+    <div class="ui-grid">
+      <div class="ui-card">
+        <div class="ui-label">Rivalry notification</div>
+        <div class="notif">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="#FF5A4E" style="flex-shrink:0;margin-top:2px;"><path d="M13 2L4 14h6l-1 8 9-12h-6z"/></svg>
+          <div><p>Chandigarh University just pulled ahead. Amity Mohali has gone quiet.</p><div class="ts">2 min ago</div></div>
+        </div>
+      </div>
+      <div class="ui-card">
+        <div class="ui-label">Verified badge chip</div>
+        <div class="chip">
+          <svg width="14" height="14" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="#0D0D12"/><path d="M7.5 12.5l2.8 2.8L16.5 9" stroke="#C9A65C" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          Verified · Amity Mohali
+        </div>
+      </div>
+      <div class="ui-card">
+        <div class="ui-label">Buttons</div>
+        <div class="btn-row">
+          <button class="btn gold">Verify your ID</button>
+          <button class="btn coral">React</button>
+          <button class="btn ghost">Not now</button>
+        </div>
+      </div>
+      <div class="ui-card">
+        <div class="ui-label">Streak counter</div>
+        <div class="streak">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="#FF5A4E"><path d="M12 2c1 4-3 5-3 9a3 3 0 006 0c0-2-1-3-1-5 2 2 3 4 3 7a5 5 0 01-10 0c0-5 3-7 5-11z"/></svg>
+          <span class="num">07</span>
+          <span style="font-size:13px;color:var(--bone-dim);">day streak</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 08 MOTION -->
+  <section class="chapter">
+    <div class="chapter-head">
+      <span class="chapter-num">08</span>
+      <h2 class="chapter-title">Motion</h2>
+    </div>
+    <p class="chapter-intro">The door moves slowly. The room bounces.</p>
+    <div class="motion-cols">
+      <div class="motion-card">
+        <h4>Verification &amp; status</h4>
+        <p>Ease-out, 400–600ms, settles without overshoot. Onboarding, ID verification, badge reveals — anything tied to trust should feel deliberate, never snappy.</p>
+      </div>
+      <div class="motion-card">
+        <h4>Reactions &amp; rivalry</h4>
+        <p>Spring physics, 150–250ms, slight overshoot on entry. Reactions, streak increments, live score updates — anything tied to energy should feel a little too fast, on purpose.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 09 SUMMARY -->
+  <section class="chapter" style="border-bottom:none;">
+    <div class="chapter-head">
+      <span class="chapter-num">09</span>
+      <h2 class="chapter-title">Quick reference</h2>
+    </div>
+    <table class="dodont">
+      <tr><th>Always</th><th>Never</th></tr>
+      <tr><td class="do">Gold only for earned or verified moments</td><td class="dont">Gold as a general accent or CTA-everywhere color</td></tr>
+      <tr><td class="do">Coral / Violet scoped to rivalry contexts</td><td class="dont">Coral / Violet as decorative brand color elsewhere</td></tr>
+      <tr><td class="do">Lowercase wordmark, confident and quiet</td><td class="dont">All-caps lockups or added taglines baked into the logo</td></tr>
+      <tr><td class="do">Outline icons at rest, filled only when earned</td><td class="dont">Filled icon sets by default</td></tr>
+      <tr><td class="do">Direct, campus-specific copy</td><td class="dont">Generic gamification or corporate SaaS language</td></tr>
+    </table>
+  </section>
+
+  <footer>
+    <p>Univerce Brand Identity — Vol. 01. Directional system for internal use; production logo work should be finalized by a designer working in vector outlines.</p>
+  </footer>
+
+</div>
+</body>
+</html>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Univerce — Brand Identity</title>
