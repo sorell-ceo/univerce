@@ -188,8 +188,8 @@ html, body {
 }
 
 .step-dot {
-  width: 6px;
-  height: 6px;
+  width: 8px;
+  height: 8px;
   border-radius: 50%;
   background: var(--text-muted);
 }
@@ -262,7 +262,7 @@ html, body {
 }
 
 .upload-heading {
-  font-size: 17px;
+  font-size: 20px;
   font-weight: 700;
   color: var(--text-primary);
   margin-bottom: 6px;
@@ -270,7 +270,7 @@ html, body {
 }
 
 .upload-subtext {
-  font-size: 12.5px;
+  font-size: 16px;
   font-weight: 500;
   color: var(--text-secondary);
   margin-bottom: 26px;
