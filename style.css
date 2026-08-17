@@ -168,7 +168,7 @@ html, body {
 }
 
 .page-title {
-  font-size: 22px;
+  font-size: 28px;
   font-weight: 700;
   letter-spacing: -0.015em;
   margin-bottom: 22px;
@@ -221,7 +221,7 @@ html, body {
 
 .section-title {
   font-size: 22px;
-  font-weight: 700;
+  font-weight: 600;
   color: var(--text-primary);
   margin-bottom: 16px;
 }
