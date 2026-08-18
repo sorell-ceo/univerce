@@ -472,8 +472,8 @@ html, body {
 .results-list li {
   display: flex;
   align-items: center;
-  gap: 10px;
-  font-size: 14px;
+  gap: 6px;
+  font-size: 17px;
   font-weight: 500;
   color: var(--text-secondary);
   opacity: 0;
