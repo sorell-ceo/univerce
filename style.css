@@ -222,7 +222,7 @@ html, body {
 .section-title {
   font-size: 22px;
   font-weight: 600;
-  color: var(--text-primary);
+  color: #e4e4e4;
   margin-bottom: 16px;
 }
 
