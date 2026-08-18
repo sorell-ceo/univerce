@@ -179,7 +179,7 @@ html, body {
 .stepper {
   display: flex;
   align-items: center;
-  margin-bottom: 34px;
+  margin-bottom: 26px;
 }
 
 .step {
