@@ -7,13 +7,13 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
 <div class="app">
 
-  <!-- ============ SIDEBAR ============ -->
+  <!-- ============ SIDEBAR (shared across all steps) ============ -->
   <aside class="sidebar">
     <div class="brand">
       <div class="brand-logo"></div>
@@ -62,62 +62,107 @@
   <main class="main">
     <h1 class="page-title">AI Content Detection</h1>
 
-    <!-- Stepper -->
+    <!-- Stepper (shared, active step driven by JS) -->
     <div class="stepper">
-      <div class="step active">
+      <div class="step active" data-step="1">
         <span class="step-dot"></span>
         <span class="step-label">Step 1</span>
       </div>
       <div class="step-line"></div>
-      <div class="step">
+      <div class="step" data-step="2">
         <span class="step-dot"></span>
         <span class="step-label">Step 2</span>
       </div>
       <div class="step-line"></div>
-      <div class="step">
+      <div class="step" data-step="3">
         <span class="step-dot"></span>
         <span class="step-label">Step 3</span>
       </div>
       <div class="step-line"></div>
-      <div class="step">
+      <div class="step" data-step="4">
         <span class="step-dot"></span>
         <span class="step-label">Step 4</span>
       </div>
     </div>
 
-    <h2 class="section-title">Upload Media</h2>
+    <div class="screen-container">
 
-    <!-- Upload card -->
-    <div class="upload-card">
-      <div class="upload-glow"></div>
+      <!-- ===== SCREEN 1: Upload ===== -->
+      <section class="screen screen-active" data-screen="1">
+        <h2 class="section-title">Upload Media</h2>
 
-      <div class="upload-card-content">
-        <h3 class="upload-heading">Upload Image, Video or URL link</h3>
-        <p class="upload-subtext">Keep the file size less than 50MB</p>
+        <div class="upload-card">
+          <div class="upload-glow"></div>
 
-        <div class="url-input-wrap">
-          <svg class="url-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
-          <input type="text" placeholder="www.instagram.com/sample_account" />
+          <div class="upload-card-content">
+            <h3 class="upload-heading">Upload Image, Video or URL link</h3>
+            <p class="upload-subtext">Keep the file size less than 50MB</p>
+
+            <div class="url-input-wrap">
+              <svg class="url-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+              <input type="text" placeholder="www.instagram.com/sample_account" />
+            </div>
+
+            <div class="action-buttons">
+              <button class="btn btn-primary" id="uploadBtn">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg>
+                Upload Image/Video
+              </button>
+              <button class="btn btn-secondary" id="dragBtn">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"/><path d="m7 10 5 5 5-5"/><path d="M5 21h14"/></svg>
+                Drag &amp; Drop
+              </button>
+            </div>
+
+            <input type="file" id="fileInput" accept="image/*,video/*" hidden />
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== SCREEN 2: Analysis / Searching ===== -->
+      <section class="screen" data-screen="2">
+        <h2 class="section-title">Searching Social Media &amp; Internet</h2>
+
+        <div class="analysis-card">
+          <div class="upload-glow"></div>
+
+          <div class="analysis-card-content">
+            <div class="media-thumb">IMAGE</div>
+            <p class="progress-caption">This process may take some time.</p>
+
+            <div class="progress-track">
+              <div class="progress-fill" id="progressFill"></div>
+            </div>
+            <span class="progress-percent" id="progressPercent">0%</span>
+          </div>
         </div>
 
-        <div class="action-buttons">
-          <button class="btn btn-primary">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg>
-            Upload Image/Video
-          </button>
-          <button class="btn btn-secondary">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"/><path d="m7 10 5 5 5-5"/><path d="M5 21h14"/></svg>
-            Drag &amp; Drop
-          </button>
+        <div class="results-block">
+          <h2 class="section-title">Search Results</h2>
+          <ul class="results-list" id="resultsList">
+            <li><strong>10</strong>&nbsp;similar images found on Web</li>
+            <li><strong>8</strong>&nbsp;similar images found on Instagram</li>
+            <li><strong>2</strong>&nbsp;similar images found on Facebook</li>
+            <li><strong>12</strong>&nbsp;similar images found on TikTok</li>
+          </ul>
         </div>
+      </section>
 
-        <input type="file" id="fileInput" accept="image/*,video/*" hidden />
-      </div>
+      <!-- ===== SCREEN 3 & 4 placeholders ===== -->
+      <section class="screen" data-screen="3">
+        <h2 class="section-title">Verdict</h2>
+      </section>
+
+      <section class="screen" data-screen="4">
+        <h2 class="section-title">Source Trace</h2>
+      </section>
+
     </div>
   </main>
 
 </div>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script src="script.js"></script>
 </body>
 </html>
