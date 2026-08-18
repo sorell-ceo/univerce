@@ -246,8 +246,8 @@ html, body {
   top: -60px;
   left: 50%;
   transform: translateX(-50%);
-  width: 480px;
-  height: 260px;
+  width: 800px;
+  height: 200px;
   background: radial-gradient(ellipse at top center, rgba(91,99,211,0.35), rgba(58,63,116,0.12) 55%, transparent 75%);
   pointer-events: none;
 }
