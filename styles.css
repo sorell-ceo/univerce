@@ -97,7 +97,7 @@ html, body {
   align-items: center;
   gap: 11px;
   padding: 11px 12px;
-  border-radius: var(--radius-md);
+  border-radius: var(--radius-lg);
   text-decoration: none;
   color: var(--text-secondary);
   font-size: 16px;
