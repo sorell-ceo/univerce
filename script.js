@@ -95,7 +95,7 @@ function runAnalysisSequence() {
 
   gsap.to(progressObj, {
     value: 100,
-    duration: 3.2,
+    duration: 5,
     ease: 'power1.inOut',
     onUpdate: () => {
       const pct = Math.round(progressObj.value);
