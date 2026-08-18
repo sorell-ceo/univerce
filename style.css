@@ -99,7 +99,7 @@ html, body {
   border-radius: var(--radius-sm);
   text-decoration: none;
   color: var(--text-secondary);
-  font-size: 13.5px;
+  font-size: 16px;
   font-weight: 500;
   transition: background 0.15s ease, color 0.15s ease;
   position: relative;
