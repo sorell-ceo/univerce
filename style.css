@@ -233,6 +233,7 @@ html, body {
   background: var(--card-bg);
   border: 1.12px solid var(--card-border);
   border-radius: var(--radius-lg);
+  box-shadow: 0 0 16px rgba(91, 99, 211, 0.55), 0 0 2px rgba(91, 99, 211, 0.4);
   overflow: hidden;
   padding: 56px 40px;
   display: flex;
@@ -348,7 +349,7 @@ html, body {
 
 .btn-primary:hover {
   filter: brightness(1.1);
-  box-shadow: 0 0 22px rgba(91, 99, 211, 0.75), 0 0 6px rgba(91, 99, 211, 0.5);
+  box-shadow: 0 0 22px rgba(91, 99, 211, 0.65), 0 0 5.5px rgba(91, 99, 211, 0.5);
 }
 
 .btn-secondary {
