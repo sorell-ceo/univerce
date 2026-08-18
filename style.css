@@ -89,6 +89,7 @@ html, body {
   flex-direction: column;
   gap: 4px;
   flex: 1;
+  justify-content: center;
 }
 
 .nav-item {
@@ -243,10 +244,11 @@ html, body {
 .upload-glow {
   position: absolute;
   top: -60px;
-  left: 0px;
+  left: 50%;
+  transform: translateX(-50%);
   width: 380px;
   height: 260px;
-  background: radial-gradient(ellipse at top left, rgba(91,99,211,0.35), rgba(58,63,116,0.12) 55%, transparent 75%);
+  background: radial-gradient(ellipse at top center, rgba(91,99,211,0.35), rgba(58,63,116,0.12) 55%, transparent 75%);
   pointer-events: none;
 }
 
