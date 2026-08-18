@@ -341,10 +341,14 @@ html, body {
 .btn-primary {
   background: var(--accent);
   color: #ffffff;
+  box-shadow: 0 0 16px rgba(91, 99, 211, 0.55), 0 0 4px rgba(91, 99, 211, 0.4);
+  transition: filter 0.15s ease, transform 0.1s ease, box-shadow 0.15s ease;
 }
+
 
 .btn-primary:hover {
   filter: brightness(1.1);
+  box-shadow: 0 0 22px rgba(91, 99, 211, 0.75), 0 0 6px rgba(91, 99, 211, 0.5);
 }
 
 .btn-secondary {
