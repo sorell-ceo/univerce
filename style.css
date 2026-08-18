@@ -230,14 +230,14 @@ html, body {
 .upload-card {
   position: relative;
   background: var(--card-bg);
-  border: 1px solid var(--card-border);
+  border: 1.12px solid var(--card-border);
   border-radius: var(--radius-lg);
   overflow: hidden;
   padding: 56px 40px;
   display: flex;
   align-items: center;
   justify-content: center;
-  min-height: 260px;
+  min-height: 320px;
 }
 
 .upload-glow {
@@ -281,7 +281,7 @@ html, body {
   align-items: center;
   gap: 9px;
   width: 100%;
-  padding: 11px 16px;
+  padding: 11px 11px;
   background: rgba(255,255,255,0.02);
   border: 1px solid var(--border-subtle);
   border-radius: var(--radius-md);
