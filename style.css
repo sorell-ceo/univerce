@@ -37,7 +37,7 @@ html, body {
 
 /* ============ SIDEBAR ============ */
 .sidebar {
-  width: 260px;
+  width: 300px;
   flex-shrink: 0;
   background: var(--sidebar-bg);
   border-right: 1px solid var(--border-subtle);
@@ -101,7 +101,7 @@ html, body {
   text-decoration: none;
   color: var(--text-secondary);
   font-size: 16px;
-  font-weight: 500;
+  font-weight: 600;
   transition: background 0.15s ease, color 0.15s ease;
   position: relative;
 }
