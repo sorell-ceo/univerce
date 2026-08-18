@@ -393,7 +393,7 @@ html, body {
   display: flex;
   align-items: center;
   justify-content: center;
-  min-height: 260px;
+  min-height: 220px;
 }
 
 .analysis-card .upload-glow {
