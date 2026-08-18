@@ -233,7 +233,7 @@ html, body {
   background: var(--card-bg);
   border: 1.12px solid var(--card-border);
   border-radius: var(--radius-lg);
-  box-shadow: 0 0 16px rgba(91, 99, 211, 0.55), 0 0 2px rgba(91, 99, 211, 0.4);
+  box-shadow: 0 0 16px rgba(228, 228, 228, 0.33), 0 0 2px rgba(91, 99, 211, 0.15);
   overflow: hidden;
   padding: 56px 40px;
   display: flex;
