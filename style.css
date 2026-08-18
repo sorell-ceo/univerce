@@ -369,6 +369,131 @@ html, body {
   opacity: 1.3;
 }
 
+/* ============ SCREEN SYSTEM ============ */
+.screen-container {
+  position: relative;
+}
+
+.screen {
+  display: none;
+}
+
+.screen.screen-active {
+  display: block;
+}
+
+/* ============ SCREEN 2 — ANALYSIS ============ */
+.analysis-card {
+  position: relative;
+  background: var(--card-bg);
+  border: 1.12px solid var(--card-border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  padding: 48px 40px 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 260px;
+}
+
+.analysis-card .upload-glow {
+  opacity: 0.9;
+}
+
+.analysis-card-content {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  width: 100%;
+  max-width: 360px;
+}
+
+.media-thumb {
+  width: 120px;
+  height: 90px;
+  border-radius: 14px;
+  background: linear-gradient(160deg, #f2f2f3, #cfcfd4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 13px;
+  letter-spacing: 0.04em;
+  color: #17171a;
+  margin-bottom: 22px;
+  box-shadow: 0 12px 30px rgba(0,0,0,0.4);
+}
+
+.progress-caption {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-secondary);
+  margin-bottom: 14px;
+}
+
+.progress-track {
+  width: 100%;
+  height: 6px;
+  border-radius: 999px;
+  background: var(--border-subtle);
+  overflow: hidden;
+  margin-bottom: 10px;
+}
+
+.progress-fill {
+  height: 100%;
+  width: 0%;
+  border-radius: 999px;
+  background: linear-gradient(90deg, #5b63d3, #8b93f0);
+  transition: width 0.4s ease;
+}
+
+.progress-percent {
+  font-size: 13px;
+  font-weight: 700;
+  color: #8b93f0;
+}
+
+/* Search results */
+.results-block {
+  margin-top: 28px;
+}
+
+.results-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.results-list li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-secondary);
+  opacity: 0;
+  transform: translateY(6px);
+}
+
+.results-list li::before {
+  content: "";
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #7b83e8;
+  flex-shrink: 0;
+}
+
+.results-list li strong {
+  color: var(--text-primary);
+  font-weight: 700;
+}
+
 /* Responsive */
 @media (max-width: 720px) {
   .app {
