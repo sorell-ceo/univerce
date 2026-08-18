@@ -16,7 +16,7 @@
   --accent-soft: #333c6b;
   --accent-glow: #3a3f74;
   --border-subtle: #232326;
-  --radius-lg: 30px;
+  --radius-lg: 44px;
   --radius-md: 10px;
   --radius-sm: 8px;
 }
@@ -232,7 +232,7 @@ html, body {
   position: relative;
   background: var(--card-bg);
   border: 1.12px solid var(--card-border);
-  border-radius: 44;
+  border-radius: var(--radius-lg);
   box-shadow: 0 0 6px rgba(228, 228, 228, 0.1), 0 0 0.8px rgba(228, 228, 228, 0.05);
   overflow: hidden;
   padding: 56px 40px;
