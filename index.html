@@ -26,25 +26,25 @@
     <nav class="nav">
       <a href="#" class="nav-item active">
         <span class="nav-icon">
-          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
         </span>
         <span>AI Content Detection</span>
       </a>
       <a href="#" class="nav-item">
         <span class="nav-icon">
-          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg>
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg>
         </span>
         <span>Previous Cases</span>
       </a>
       <a href="#" class="nav-item">
         <span class="nav-icon">
-          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="2" width="16" height="20" rx="2"/><path d="M9 9h6M9 13h6M9 17h3"/></svg>
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="2" width="16" height="20" rx="2"/><path d="M9 9h6M9 13h6M9 17h3"/></svg>
         </span>
         <span>Case Analysis</span>
       </a>
       <a href="#" class="nav-item">
         <span class="nav-icon">
-          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
         </span>
         <span>Media Source</span>
       </a>
@@ -117,6 +117,47 @@
             <input type="file" id="fileInput" accept="image/*,video/*" hidden />
           </div>
         </div>
+
+        <!-- Case metadata + tips row -->
+        <div class="lower-grid">
+          <div class="info-card">
+            <h4 class="info-card-title">Case Details</h4>
+            <div class="field-row">
+              <label>Case Reference No.</label>
+              <input type="text" placeholder="CHD-2026-00417" />
+            </div>
+            <div class="field-row">
+              <label>Priority</label>
+              <div class="pill-select">
+                <span class="pill">Low</span>
+                <span class="pill pill-active">Medium</span>
+                <span class="pill">High</span>
+              </div>
+            </div>
+            <div class="field-row">
+              <label>Assigned Officer</label>
+              <input type="text" value="Insp. Yogesh Yadav" disabled />
+            </div>
+          </div>
+
+          <div class="info-card">
+            <h4 class="info-card-title">Supported Sources</h4>
+            <div class="source-chip-grid">
+              <div class="source-chip">Instagram</div>
+              <div class="source-chip">Facebook</div>
+              <div class="source-chip">TikTok</div>
+              <div class="source-chip">X / Twitter</div>
+              <div class="source-chip">Open Web</div>
+              <div class="source-chip">YouTube</div>
+            </div>
+            <h4 class="info-card-title info-card-title-spaced">Quick Tips</h4>
+            <ul class="tip-list">
+              <li>Use clear, front-facing shots for best face match accuracy</li>
+              <li>Keep videos under 2 minutes for faster processing</li>
+              <li>Avoid heavily cropped or filtered source images</li>
+            </ul>
+          </div>
+        </div>
       </section>
 
       <!-- ===== SCREEN 2: Analysis / Searching ===== -->
@@ -128,6 +169,7 @@
 
           <div class="analysis-card-content">
             <div class="media-thumb">IMAGE</div>
+            <p class="progress-status" id="progressStatus">Extracting facial features&hellip;</p>
             <p class="progress-caption">This process may take some time.</p>
 
             <div class="progress-track">
@@ -139,22 +181,330 @@
 
         <div class="results-block">
           <h2 class="section-title">Search Results</h2>
-          <ul class="results-list" id="resultsList">
-            <li><strong>10</strong>&nbsp;similar images found on Web</li>
-            <li><strong>8</strong>&nbsp;similar images found on Instagram</li>
-            <li><strong>2</strong>&nbsp;similar images found on Facebook</li>
-            <li><strong>12</strong>&nbsp;similar images found on TikTok</li>
-          </ul>
+          <div class="platform-grid" id="platformGrid">
+
+            <div class="platform-card">
+              <div class="platform-card-glow"></div>
+              <div class="platform-card-head">
+                <span class="platform-icon platform-icon-instagram">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="3.6"/><circle cx="17.2" cy="6.8" r="1.1" fill="currentColor" stroke="none"/></svg>
+                </span>
+                <div>
+                  <h5>Instagram</h5>
+                  <span class="platform-count">8 uploads</span>
+                </div>
+              </div>
+              <ul class="source-list">
+                <li><span class="src-dot"></span>www.instagram.com/xyz<a href="#" class="src-link">↗</a></li>
+                <li><span class="src-dot"></span>www.instagram.com/xyz<a href="#" class="src-link">↗</a></li>
+                <li><span class="src-dot"></span>www.instagram.com/xyz<a href="#" class="src-link">↗</a></li>
+                <li><span class="src-dot"></span>www.instagram.com/xyz<a href="#" class="src-link">↗</a></li>
+                <li><span class="src-dot"></span>www.instagram.com/xyz<a href="#" class="src-link">↗</a></li>
+              </ul>
+              <a href="#" class="view-all-link">View All Sources</a>
+            </div>
+
+            <div class="platform-card">
+              <div class="platform-card-glow"></div>
+              <div class="platform-card-head">
+                <span class="platform-icon platform-icon-facebook">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 9h3V6h-3a4 4 0 0 0-4 4v2H7v3h3v6h3v-6h3l1-3h-4v-2a1 1 0 0 1 1-1Z"/></svg>
+                </span>
+                <div>
+                  <h5>Facebook</h5>
+                  <span class="platform-count">12 uploads</span>
+                </div>
+              </div>
+              <ul class="source-list">
+                <li><span class="src-dot"></span>www.facebook.com/xyz<a href="#" class="src-link">↗</a></li>
+                <li><span class="src-dot"></span>www.facebook.com/xyz<a href="#" class="src-link">↗</a></li>
+                <li><span class="src-dot"></span>www.facebook.com/xyz<a href="#" class="src-link">↗</a></li>
+                <li><span class="src-dot"></span>www.facebook.com/xyz<a href="#" class="src-link">↗</a></li>
+                <li><span class="src-dot"></span>www.facebook.com/xyz<a href="#" class="src-link">↗</a></li>
+              </ul>
+              <a href="#" class="view-all-link">View All Sources</a>
+            </div>
+
+            <div class="platform-card">
+              <div class="platform-card-glow"></div>
+              <div class="platform-card-head">
+                <span class="platform-icon platform-icon-tiktok">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3v10.5a3.5 3.5 0 1 1-3.5-3.5c.35 0 .68.05 1 .14"/><path d="M15 3c.4 2.2 2 4 4.5 4.3"/></svg>
+                </span>
+                <div>
+                  <h5>TikTok</h5>
+                  <span class="platform-count">16 uploads</span>
+                </div>
+              </div>
+              <ul class="source-list">
+                <li><span class="src-dot"></span>www.tiktok.com/@xyz<a href="#" class="src-link">↗</a></li>
+                <li><span class="src-dot"></span>www.tiktok.com/@xyz<a href="#" class="src-link">↗</a></li>
+                <li><span class="src-dot"></span>www.tiktok.com/@xyz<a href="#" class="src-link">↗</a></li>
+                <li><span class="src-dot"></span>www.tiktok.com/@xyz<a href="#" class="src-link">↗</a></li>
+                <li><span class="src-dot"></span>www.tiktok.com/@xyz<a href="#" class="src-link">↗</a></li>
+              </ul>
+              <a href="#" class="view-all-link">View All Sources</a>
+            </div>
+
+          </div>
+        </div>
+
+        <div class="screen-actions">
+          <button class="btn btn-primary" onclick="goToScreen(3)">
+            Continue to Source Trace
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </button>
         </div>
       </section>
 
-      <!-- ===== SCREEN 3 & 4 placeholders ===== -->
+      <!-- ===== SCREEN 3: Source Trace ===== -->
       <section class="screen" data-screen="3">
-        <h2 class="section-title">Verdict</h2>
+        <h2 class="section-title">Tracking Source &amp; Origin</h2>
+
+        <div class="trace-top">
+          <div class="trace-media-card">
+            <div class="upload-glow"></div>
+            <div class="trace-media-content">
+              <div class="media-thumb media-thumb-sm">IMAGE</div>
+              <div class="trace-media-meta">
+                <span class="meta-label">Query Media</span>
+                <span class="meta-value">case_upload_0417.jpg</span>
+                <span class="meta-sub">32 total matches across 4 platforms</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="trace-summary-card">
+            <div class="trace-summary-item">
+              <span class="trace-summary-num">Mar 14, 2025</span>
+              <span class="trace-summary-label">Earliest Indexed Appearance</span>
+            </div>
+            <div class="trace-summary-divider"></div>
+            <div class="trace-summary-item">
+              <span class="trace-summary-num">4</span>
+              <span class="trace-summary-label">Platforms Matched</span>
+            </div>
+            <div class="trace-summary-divider"></div>
+            <div class="trace-summary-item">
+              <span class="trace-summary-num">96%</span>
+              <span class="trace-summary-label">Highest Match Confidence</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Timeline -->
+        <div class="timeline-card">
+          <h4 class="info-card-title">Appearance Timeline</h4>
+          <div class="timeline-track">
+            <div class="timeline-line"></div>
+            <div class="timeline-point" style="left: 6%;">
+              <span class="timeline-dot timeline-dot-first"></span>
+              <div class="timeline-tooltip">
+                <strong>Mar 14, 2025</strong>
+                <span>Instagram · @unknown_handle</span>
+              </div>
+            </div>
+            <div class="timeline-point" style="left: 34%;">
+              <span class="timeline-dot"></span>
+              <div class="timeline-tooltip">
+                <strong>May 02, 2025</strong>
+                <span>Open Web · forum repost</span>
+              </div>
+            </div>
+            <div class="timeline-point" style="left: 61%;">
+              <span class="timeline-dot"></span>
+              <div class="timeline-tooltip">
+                <strong>Sep 27, 2025</strong>
+                <span>Facebook · public group</span>
+              </div>
+            </div>
+            <div class="timeline-point" style="left: 90%;">
+              <span class="timeline-dot timeline-dot-latest"></span>
+              <div class="timeline-tooltip">
+                <strong>Jan 08, 2026</strong>
+                <span>TikTok · @xyz</span>
+              </div>
+            </div>
+          </div>
+          <div class="timeline-axis-labels">
+            <span>Earliest Seen</span>
+            <span>Most Recent</span>
+          </div>
+        </div>
+
+        <!-- Results table -->
+        <div class="results-block">
+          <div class="table-header-row">
+            <h2 class="section-title">Matched Sources</h2>
+            <div class="table-filters">
+              <span class="pill pill-active">All</span>
+              <span class="pill">Instagram</span>
+              <span class="pill">Facebook</span>
+              <span class="pill">TikTok</span>
+              <span class="pill">Web</span>
+            </div>
+          </div>
+
+          <div class="trace-table">
+            <div class="trace-table-head">
+              <span>Source</span>
+              <span>Platform</span>
+              <span>First Indexed</span>
+              <span>Match</span>
+              <span></span>
+            </div>
+
+            <div class="trace-row">
+              <div class="trace-row-source">
+                <div class="row-thumb"></div>
+                <span>@unknown_handle</span>
+              </div>
+              <span class="row-platform"><span class="platform-icon platform-icon-instagram platform-icon-sm"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="3.6"/></svg></span>Instagram</span>
+              <span class="row-date">Mar 14, 2025</span>
+              <span class="row-match"><span class="match-bar"><span class="match-fill" style="width:96%"></span></span>96%</span>
+              <div class="row-actions">
+                <a href="#" class="row-action">View</a>
+                <a href="#" class="row-action row-action-flag">Flag</a>
+              </div>
+            </div>
+
+            <div class="trace-row">
+              <div class="trace-row-source">
+                <div class="row-thumb"></div>
+                <span>forum-repost.net</span>
+              </div>
+              <span class="row-platform"><span class="platform-icon platform-icon-web platform-icon-sm">🌐</span>Open Web</span>
+              <span class="row-date">May 02, 2025</span>
+              <span class="row-match"><span class="match-bar"><span class="match-fill" style="width:89%"></span></span>89%</span>
+              <div class="row-actions">
+                <a href="#" class="row-action">View</a>
+                <a href="#" class="row-action row-action-flag">Flag</a>
+              </div>
+            </div>
+
+            <div class="trace-row">
+              <div class="trace-row-source">
+                <div class="row-thumb"></div>
+                <span>Public Group Post</span>
+              </div>
+              <span class="row-platform"><span class="platform-icon platform-icon-facebook platform-icon-sm"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 9h3V6h-3a4 4 0 0 0-4 4v2H7v3h3v6h3v-6h3l1-3h-4v-2a1 1 0 0 1 1-1Z"/></svg></span>Facebook</span>
+              <span class="row-date">Sep 27, 2025</span>
+              <span class="row-match"><span class="match-bar"><span class="match-fill" style="width:82%"></span></span>82%</span>
+              <div class="row-actions">
+                <a href="#" class="row-action">View</a>
+                <a href="#" class="row-action row-action-flag">Flag</a>
+              </div>
+            </div>
+
+            <div class="trace-row">
+              <div class="trace-row-source">
+                <div class="row-thumb"></div>
+                <span>@xyz</span>
+              </div>
+              <span class="row-platform"><span class="platform-icon platform-icon-tiktok platform-icon-sm"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3v10.5a3.5 3.5 0 1 1-3.5-3.5c.35 0 .68.05 1 .14"/><path d="M15 3c.4 2.2 2 4 4.5 4.3"/></svg></span>TikTok</span>
+              <span class="row-date">Jan 08, 2026</span>
+              <span class="row-match"><span class="match-bar"><span class="match-fill" style="width:74%"></span></span>74%</span>
+              <div class="row-actions">
+                <a href="#" class="row-action">View</a>
+                <a href="#" class="row-action row-action-flag">Flag</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="screen-actions">
+          <button class="btn btn-primary" onclick="goToScreen(4)">
+            Continue to AI Verdict
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </button>
+        </div>
       </section>
 
+      <!-- ===== SCREEN 4: AI Verdict ===== -->
       <section class="screen" data-screen="4">
-        <h2 class="section-title">Source Trace</h2>
+        <h2 class="section-title">AI Detection Verdict</h2>
+
+        <div class="verdict-top">
+
+          <div class="gauge-card">
+            <div class="upload-glow"></div>
+            <div class="gauge-card-content">
+              <div class="gauge-wrap">
+                <svg viewBox="0 0 200 200" class="gauge-svg">
+                  <circle cx="100" cy="100" r="84" class="gauge-track" />
+                  <circle cx="100" cy="100" r="84" class="gauge-fill" id="gaugeFill" />
+                </svg>
+                <div class="gauge-center">
+                  <span class="gauge-num" id="gaugeNum">0%</span>
+                  <span class="gauge-sub">AI Probability</span>
+                </div>
+              </div>
+              <div class="verdict-banner" id="verdictBanner">
+                <span class="verdict-dot"></span>
+                <span id="verdictText">High Likelihood of AI Manipulation</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="media-heatmap-card">
+            <div class="heatmap-header">
+              <h5>Analyzed Media</h5>
+              <button class="heatmap-toggle" id="heatmapToggle">
+                <span class="toggle-track"><span class="toggle-thumb"></span></span>
+                Show AI-generated regions
+              </button>
+            </div>
+            <div class="heatmap-frame">
+              <div class="media-thumb media-thumb-lg">IMAGE</div>
+              <div class="heatmap-overlay" id="heatmapOverlay">
+                <span class="heat-region heat-region-1"></span>
+                <span class="heat-region heat-region-2"></span>
+                <span class="heat-region heat-region-3"></span>
+              </div>
+            </div>
+            <p class="heatmap-caption">Highlighted regions show highest reconstruction-error concentration — typically face boundary and background artifacts.</p>
+          </div>
+
+        </div>
+
+        <!-- Model breakdown -->
+        <div class="breakdown-card">
+          <h4 class="info-card-title">Detection Model Breakdown</h4>
+
+          <div class="breakdown-row">
+            <span class="breakdown-label">Deepfake Detector <span class="breakdown-tag">Xception / FF++</span></span>
+            <div class="breakdown-bar"><div class="breakdown-fill" style="width:91%"></div></div>
+            <span class="breakdown-pct">91%</span>
+          </div>
+          <div class="breakdown-row">
+            <span class="breakdown-label">Diffusion Artifact Score <span class="breakdown-tag">DIRE</span></span>
+            <div class="breakdown-bar"><div class="breakdown-fill" style="width:82%"></div></div>
+            <span class="breakdown-pct">82%</span>
+          </div>
+          <div class="breakdown-row">
+            <span class="breakdown-label">Face Consistency Score <span class="breakdown-tag">InsightFace</span></span>
+            <div class="breakdown-bar"><div class="breakdown-fill" style="width:79%"></div></div>
+            <span class="breakdown-pct">79%</span>
+          </div>
+          <div class="breakdown-row">
+            <span class="breakdown-label">Metadata / C2PA Signal <span class="breakdown-tag">EXIF</span></span>
+            <div class="breakdown-bar"><div class="breakdown-fill breakdown-fill-low" style="width:34%"></div></div>
+            <span class="breakdown-pct">34%</span>
+          </div>
+
+          <p class="breakdown-note">Composite score is a weighted average across all four detectors. Metadata signal is weighted lowest due to frequent platform stripping.</p>
+        </div>
+
+        <div class="screen-actions screen-actions-end">
+          <button class="btn btn-secondary">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg>
+            Export Report (PDF)
+          </button>
+          <button class="btn btn-primary">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="9"/></svg>
+            Add to Case File
+          </button>
+        </div>
       </section>
 
     </div>
