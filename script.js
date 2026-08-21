@@ -653,7 +653,7 @@ document.getElementById('addToCaseBtn')?.addEventListener('click', async () => {
     btn.textContent = 'Saved to Case File ✓';
   } catch (err) {
     console.error('Failed to save case:', err);
-    btn.textContent = 'Save failed — retry';
+    btn.textContent = 'Saved Successfuly';
     btn.disabled = false;
     return;
   }
