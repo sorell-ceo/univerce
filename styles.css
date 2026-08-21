@@ -415,10 +415,21 @@ html, body {
 }
 
 .info-card {
+  position: relative;
+  overflow: hidden;
   background: var(--card-bg);
   border: 1.12px solid var(--card-border);
   border-radius: 22px;
   padding: 24px 26px;
+}
+
+.info-card > *:not(.upload-glow) {
+  position: relative;
+  z-index: 1;
+}
+
+.info-card .upload-glow {
+  opacity: 0.8;
 }
 
 .info-card-title {
@@ -573,7 +584,10 @@ html, body {
   max-width: 360px;
 }
 
+/* ===== #1: media thumb now supports a real uploaded image ===== */
 .media-thumb {
+  position: relative;
+  overflow: hidden;
   width: 120px;
   height: 90px;
   border-radius: 14px;
@@ -587,6 +601,21 @@ html, body {
   color: #17171a;
   margin-bottom: 22px;
   box-shadow: 0 12px 30px rgba(0,0,0,0.4);
+}
+
+.media-thumb-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: inherit;
+}
+
+.media-thumb-placeholder {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .media-thumb-sm {
@@ -707,15 +736,16 @@ html, body {
 .platform-icon-tiktok { background: #1f1f22; }
 .platform-icon-web { background: rgba(255,255,255,0.06); }
 
+/* ===== #2: bigger platform headings ===== */
 .platform-card-head h5 {
-  font-size: 15px;
+  font-size: 18px;
   font-weight: 700;
   color: var(--text-primary);
   margin-bottom: 1px;
 }
 
 .platform-count {
-  font-size: 12px;
+  font-size: 13px;
   font-weight: 500;
   color: var(--text-muted);
 }
@@ -745,6 +775,25 @@ html, body {
   border-radius: 50%;
   border: 1.4px solid var(--text-muted);
   flex-shrink: 0;
+}
+
+/* ===== #2: full-line underline on hover for source links ===== */
+.src-line {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+  color: var(--text-secondary);
+  width: 100%;
+}
+
+.src-line:hover {
+  text-decoration: underline;
+  color: var(--accent-bright);
+}
+
+.src-line:hover .src-link {
+  color: var(--accent-bright);
 }
 
 .src-link {
@@ -832,7 +881,10 @@ html, body {
   margin-top: 3px;
 }
 
+/* ===== #5: summary card now opts into the glow utility + bigger stat numbers ===== */
 .trace-summary-card {
+  position: relative;
+  overflow: hidden;
   background: var(--card-bg);
   border: 1.12px solid var(--card-border);
   border-radius: 22px;
@@ -840,6 +892,15 @@ html, body {
   display: flex;
   align-items: center;
   justify-content: space-between;
+}
+
+.trace-summary-card .upload-glow {
+  opacity: 0.8;
+}
+
+.trace-summary-card > *:not(.upload-glow) {
+  position: relative;
+  z-index: 1;
 }
 
 .trace-summary-item {
@@ -852,14 +913,14 @@ html, body {
 }
 
 .trace-summary-num {
-  font-size: 16px;
-  font-weight: 700;
+  font-size: 24px;
+  font-weight: 800;
   color: var(--text-primary);
   white-space: nowrap;
 }
 
 .trace-summary-label {
-  font-size: 11px;
+  font-size: 12px;
   font-weight: 600;
   color: var(--text-muted);
   line-height: 1.3;
@@ -874,11 +935,22 @@ html, body {
 
 /* Timeline */
 .timeline-card {
+  position: relative;
+  overflow: hidden;
   background: var(--card-bg);
   border: 1.12px solid var(--card-border);
   border-radius: 22px;
   padding: 26px 30px 22px;
   margin-bottom: 20px;
+}
+
+.timeline-card .upload-glow {
+  opacity: 0.8;
+}
+
+.timeline-card > *:not(.upload-glow) {
+  position: relative;
+  z-index: 1;
 }
 
 .timeline-track {
@@ -968,6 +1040,36 @@ html, body {
   color: var(--text-muted);
 }
 
+/* ===== #6: Uploads Over Time chart card ===== */
+.frequency-card {
+  position: relative;
+  overflow: hidden;
+  background: var(--card-bg);
+  border: 1.12px solid var(--card-border);
+  border-radius: 22px;
+  padding: 26px 28px 20px;
+  margin-bottom: 18px;
+}
+
+.frequency-card .upload-glow {
+  opacity: 0.8;
+}
+
+.frequency-card > *:not(.upload-glow) {
+  position: relative;
+  z-index: 1;
+}
+
+.frequency-caption {
+  font-size: 13px;
+  color: var(--text-secondary);
+  margin-bottom: 16px;
+}
+
+.frequency-chart-wrap {
+  height: 200px;
+}
+
 /* Table filters */
 .table-header-row {
   display: flex;
@@ -987,10 +1089,15 @@ html, body {
 
 /* Trace table */
 .trace-table {
+  position: relative;
+  overflow: hidden;
   background: var(--card-bg);
   border: 1.12px solid var(--card-border);
   border-radius: 22px;
-  overflow: hidden;
+}
+
+.trace-table .upload-glow {
+  opacity: 0.8;
 }
 
 .trace-table-head {
@@ -1003,6 +1110,8 @@ html, body {
   text-transform: uppercase;
   letter-spacing: 0.04em;
   color: var(--text-muted);
+  position: relative;
+  z-index: 1;
 }
 
 .trace-row {
@@ -1015,10 +1124,17 @@ html, body {
   color: var(--text-secondary);
   opacity: 0;
   transform: translateY(8px);
+  position: relative;
+  z-index: 1;
 }
 
 .trace-row:last-child {
   border-bottom: none;
+}
+
+/* ===== #3: filter pill row hides non-matching rows ===== */
+.trace-row[data-hidden="true"] {
+  display: none;
 }
 
 .trace-row-source {
@@ -1200,6 +1316,8 @@ html, body {
 }
 
 .media-heatmap-card {
+  position: relative;
+  overflow: hidden;
   background: var(--card-bg);
   border: 1.12px solid var(--card-border);
   border-radius: 22px;
@@ -1318,11 +1436,22 @@ html, body {
 
 /* Breakdown */
 .breakdown-card {
+  position: relative;
+  overflow: hidden;
   background: var(--card-bg);
   border: 1.12px solid var(--card-border);
   border-radius: 22px;
   padding: 26px 28px 22px;
   margin-bottom: 8px;
+}
+
+.breakdown-card .upload-glow {
+  opacity: 0.8;
+}
+
+.breakdown-card > *:not(.upload-glow) {
+  position: relative;
+  z-index: 1;
 }
 
 .breakdown-row {
