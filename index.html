@@ -8,6 +8,10 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.4/chart.umd.min.js"></script>
 </head>
 <body>
 
@@ -168,7 +172,10 @@
           <div class="upload-glow"></div>
 
           <div class="analysis-card-content">
-            <div class="media-thumb">IMAGE</div>
+            <div class="media-thumb" id="analysisMediaThumb">
+              <span class="media-thumb-placeholder">IMAGE</span>
+              <img id="analysisMediaImg" class="media-thumb-img" alt="Uploaded case media" hidden />
+            </div>
             <p class="progress-status" id="progressStatus">Extracting facial features&hellip;</p>
             <p class="progress-caption">This process may take some time.</p>
 
@@ -183,65 +190,65 @@
           <h2 class="section-title">Search Results</h2>
           <div class="platform-grid" id="platformGrid">
 
-            <div class="platform-card">
-              <div class="platform-card-glow"></div>
+            <div class="platform-card" data-platform="instagram">
+              <div class="upload-glow platform-card-glow"></div>
               <div class="platform-card-head">
                 <span class="platform-icon platform-icon-instagram">
                   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="3.6"/><circle cx="17.2" cy="6.8" r="1.1" fill="currentColor" stroke="none"/></svg>
                 </span>
                 <div>
                   <h5>Instagram</h5>
-                  <span class="platform-count">8 uploads</span>
+                  <span class="platform-count" id="igCount">8 uploads</span>
                 </div>
               </div>
-              <ul class="source-list">
-                <li><span class="src-dot"></span>www.instagram.com/xyz<a href="#" class="src-link">↗</a></li>
-                <li><span class="src-dot"></span>www.instagram.com/xyz<a href="#" class="src-link">↗</a></li>
-                <li><span class="src-dot"></span>www.instagram.com/xyz<a href="#" class="src-link">↗</a></li>
-                <li><span class="src-dot"></span>www.instagram.com/xyz<a href="#" class="src-link">↗</a></li>
-                <li><span class="src-dot"></span>www.instagram.com/xyz<a href="#" class="src-link">↗</a></li>
+              <ul class="source-list" id="igSourceList">
+                <li><a class="src-line" href="#" target="_blank"><span class="src-dot"></span><span class="src-text">www.instagram.com/xyz</span><span class="src-link">↗</span></a></li>
+                <li><a class="src-line" href="#" target="_blank"><span class="src-dot"></span><span class="src-text">www.instagram.com/xyz</span><span class="src-link">↗</span></a></li>
+                <li><a class="src-line" href="#" target="_blank"><span class="src-dot"></span><span class="src-text">www.instagram.com/xyz</span><span class="src-link">↗</span></a></li>
+                <li><a class="src-line" href="#" target="_blank"><span class="src-dot"></span><span class="src-text">www.instagram.com/xyz</span><span class="src-link">↗</span></a></li>
+                <li><a class="src-line" href="#" target="_blank"><span class="src-dot"></span><span class="src-text">www.instagram.com/xyz</span><span class="src-link">↗</span></a></li>
               </ul>
               <a href="#" class="view-all-link">View All Sources</a>
             </div>
 
-            <div class="platform-card">
-              <div class="platform-card-glow"></div>
+            <div class="platform-card" data-platform="facebook">
+              <div class="upload-glow platform-card-glow"></div>
               <div class="platform-card-head">
                 <span class="platform-icon platform-icon-facebook">
                   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 9h3V6h-3a4 4 0 0 0-4 4v2H7v3h3v6h3v-6h3l1-3h-4v-2a1 1 0 0 1 1-1Z"/></svg>
                 </span>
                 <div>
                   <h5>Facebook</h5>
-                  <span class="platform-count">12 uploads</span>
+                  <span class="platform-count" id="fbCount">12 uploads</span>
                 </div>
               </div>
-              <ul class="source-list">
-                <li><span class="src-dot"></span>www.facebook.com/xyz<a href="#" class="src-link">↗</a></li>
-                <li><span class="src-dot"></span>www.facebook.com/xyz<a href="#" class="src-link">↗</a></li>
-                <li><span class="src-dot"></span>www.facebook.com/xyz<a href="#" class="src-link">↗</a></li>
-                <li><span class="src-dot"></span>www.facebook.com/xyz<a href="#" class="src-link">↗</a></li>
-                <li><span class="src-dot"></span>www.facebook.com/xyz<a href="#" class="src-link">↗</a></li>
+              <ul class="source-list" id="fbSourceList">
+                <li><a class="src-line" href="#" target="_blank"><span class="src-dot"></span><span class="src-text">www.facebook.com/xyz</span><span class="src-link">↗</span></a></li>
+                <li><a class="src-line" href="#" target="_blank"><span class="src-dot"></span><span class="src-text">www.facebook.com/xyz</span><span class="src-link">↗</span></a></li>
+                <li><a class="src-line" href="#" target="_blank"><span class="src-dot"></span><span class="src-text">www.facebook.com/xyz</span><span class="src-link">↗</span></a></li>
+                <li><a class="src-line" href="#" target="_blank"><span class="src-dot"></span><span class="src-text">www.facebook.com/xyz</span><span class="src-link">↗</span></a></li>
+                <li><a class="src-line" href="#" target="_blank"><span class="src-dot"></span><span class="src-text">www.facebook.com/xyz</span><span class="src-link">↗</span></a></li>
               </ul>
               <a href="#" class="view-all-link">View All Sources</a>
             </div>
 
-            <div class="platform-card">
-              <div class="platform-card-glow"></div>
+            <div class="platform-card" data-platform="tiktok">
+              <div class="upload-glow platform-card-glow"></div>
               <div class="platform-card-head">
                 <span class="platform-icon platform-icon-tiktok">
                   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3v10.5a3.5 3.5 0 1 1-3.5-3.5c.35 0 .68.05 1 .14"/><path d="M15 3c.4 2.2 2 4 4.5 4.3"/></svg>
                 </span>
                 <div>
                   <h5>TikTok</h5>
-                  <span class="platform-count">16 uploads</span>
+                  <span class="platform-count" id="ttCount">16 uploads</span>
                 </div>
               </div>
-              <ul class="source-list">
-                <li><span class="src-dot"></span>www.tiktok.com/@xyz<a href="#" class="src-link">↗</a></li>
-                <li><span class="src-dot"></span>www.tiktok.com/@xyz<a href="#" class="src-link">↗</a></li>
-                <li><span class="src-dot"></span>www.tiktok.com/@xyz<a href="#" class="src-link">↗</a></li>
-                <li><span class="src-dot"></span>www.tiktok.com/@xyz<a href="#" class="src-link">↗</a></li>
-                <li><span class="src-dot"></span>www.tiktok.com/@xyz<a href="#" class="src-link">↗</a></li>
+              <ul class="source-list" id="ttSourceList">
+                <li><a class="src-line" href="#" target="_blank"><span class="src-dot"></span><span class="src-text">www.tiktok.com/@xyz</span><span class="src-link">↗</span></a></li>
+                <li><a class="src-line" href="#" target="_blank"><span class="src-dot"></span><span class="src-text">www.tiktok.com/@xyz</span><span class="src-link">↗</span></a></li>
+                <li><a class="src-line" href="#" target="_blank"><span class="src-dot"></span><span class="src-text">www.tiktok.com/@xyz</span><span class="src-link">↗</span></a></li>
+                <li><a class="src-line" href="#" target="_blank"><span class="src-dot"></span><span class="src-text">www.tiktok.com/@xyz</span><span class="src-link">↗</span></a></li>
+                <li><a class="src-line" href="#" target="_blank"><span class="src-dot"></span><span class="src-text">www.tiktok.com/@xyz</span><span class="src-link">↗</span></a></li>
               </ul>
               <a href="#" class="view-all-link">View All Sources</a>
             </div>
@@ -275,18 +282,19 @@
           </div>
 
           <div class="trace-summary-card">
+            <div class="upload-glow"></div>
             <div class="trace-summary-item">
-              <span class="trace-summary-num">Mar 14, 2025</span>
+              <span class="trace-summary-num" id="earliestDate">Mar 14, 2025</span>
               <span class="trace-summary-label">Earliest Indexed Appearance</span>
             </div>
             <div class="trace-summary-divider"></div>
             <div class="trace-summary-item">
-              <span class="trace-summary-num">4</span>
+              <span class="trace-summary-num" id="platformsMatchedNum">4</span>
               <span class="trace-summary-label">Platforms Matched</span>
             </div>
             <div class="trace-summary-divider"></div>
             <div class="trace-summary-item">
-              <span class="trace-summary-num">96%</span>
+              <span class="trace-summary-num" id="highestConfidenceNum">96%</span>
               <span class="trace-summary-label">Highest Match Confidence</span>
             </div>
           </div>
@@ -294,8 +302,9 @@
 
         <!-- Timeline -->
         <div class="timeline-card">
+          <div class="upload-glow"></div>
           <h4 class="info-card-title">Appearance Timeline</h4>
-          <div class="timeline-track">
+          <div class="timeline-track" id="timelineTrack">
             <div class="timeline-line"></div>
             <div class="timeline-point" style="left: 6%;">
               <span class="timeline-dot timeline-dot-first"></span>
@@ -332,20 +341,31 @@
           </div>
         </div>
 
+        <!-- Upload Frequency chart -->
+        <div class="frequency-card">
+          <div class="upload-glow"></div>
+          <h4 class="info-card-title">Uploads Over Time</h4>
+          <p class="frequency-caption">Frequency of matched uploads across the detected timeline</p>
+          <div class="frequency-chart-wrap">
+            <canvas id="uploadFrequencyChart"></canvas>
+          </div>
+        </div>
+
         <!-- Results table -->
         <div class="results-block">
           <div class="table-header-row">
             <h2 class="section-title">Matched Sources</h2>
-            <div class="table-filters">
-              <span class="pill pill-active">All</span>
-              <span class="pill">Instagram</span>
-              <span class="pill">Facebook</span>
-              <span class="pill">TikTok</span>
-              <span class="pill">Web</span>
+            <div class="table-filters" id="tableFilters">
+              <span class="pill pill-active" data-filter="all">All</span>
+              <span class="pill" data-filter="instagram">Instagram</span>
+              <span class="pill" data-filter="facebook">Facebook</span>
+              <span class="pill" data-filter="tiktok">TikTok</span>
+              <span class="pill" data-filter="web">Web</span>
             </div>
           </div>
 
           <div class="trace-table">
+            <div class="upload-glow"></div>
             <div class="trace-table-head">
               <span>Source</span>
               <span>Platform</span>
@@ -354,59 +374,61 @@
               <span></span>
             </div>
 
-            <div class="trace-row">
-              <div class="trace-row-source">
-                <div class="row-thumb"></div>
-                <span>@unknown_handle</span>
+            <div id="traceTableBody">
+              <div class="trace-row" data-platform="instagram">
+                <div class="trace-row-source">
+                  <div class="row-thumb"></div>
+                  <span>@unknown_handle</span>
+                </div>
+                <span class="row-platform"><span class="platform-icon platform-icon-instagram platform-icon-sm"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="3.6"/></svg></span>Instagram</span>
+                <span class="row-date">Mar 14, 2025</span>
+                <span class="row-match"><span class="match-bar"><span class="match-fill" style="width:96%"></span></span>96%</span>
+                <div class="row-actions">
+                  <a href="#" class="row-action">View</a>
+                  <a href="#" class="row-action row-action-flag">Flag</a>
+                </div>
               </div>
-              <span class="row-platform"><span class="platform-icon platform-icon-instagram platform-icon-sm"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="3.6"/></svg></span>Instagram</span>
-              <span class="row-date">Mar 14, 2025</span>
-              <span class="row-match"><span class="match-bar"><span class="match-fill" style="width:96%"></span></span>96%</span>
-              <div class="row-actions">
-                <a href="#" class="row-action">View</a>
-                <a href="#" class="row-action row-action-flag">Flag</a>
-              </div>
-            </div>
 
-            <div class="trace-row">
-              <div class="trace-row-source">
-                <div class="row-thumb"></div>
-                <span>forum-repost.net</span>
+              <div class="trace-row" data-platform="web">
+                <div class="trace-row-source">
+                  <div class="row-thumb"></div>
+                  <span>forum-repost.net</span>
+                </div>
+                <span class="row-platform"><span class="platform-icon platform-icon-web platform-icon-sm">🌐</span>Open Web</span>
+                <span class="row-date">May 02, 2025</span>
+                <span class="row-match"><span class="match-bar"><span class="match-fill" style="width:89%"></span></span>89%</span>
+                <div class="row-actions">
+                  <a href="#" class="row-action">View</a>
+                  <a href="#" class="row-action row-action-flag">Flag</a>
+                </div>
               </div>
-              <span class="row-platform"><span class="platform-icon platform-icon-web platform-icon-sm">🌐</span>Open Web</span>
-              <span class="row-date">May 02, 2025</span>
-              <span class="row-match"><span class="match-bar"><span class="match-fill" style="width:89%"></span></span>89%</span>
-              <div class="row-actions">
-                <a href="#" class="row-action">View</a>
-                <a href="#" class="row-action row-action-flag">Flag</a>
-              </div>
-            </div>
 
-            <div class="trace-row">
-              <div class="trace-row-source">
-                <div class="row-thumb"></div>
-                <span>Public Group Post</span>
+              <div class="trace-row" data-platform="facebook">
+                <div class="trace-row-source">
+                  <div class="row-thumb"></div>
+                  <span>Public Group Post</span>
+                </div>
+                <span class="row-platform"><span class="platform-icon platform-icon-facebook platform-icon-sm"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 9h3V6h-3a4 4 0 0 0-4 4v2H7v3h3v6h3v-6h3l1-3h-4v-2a1 1 0 0 1 1-1Z"/></svg></span>Facebook</span>
+                <span class="row-date">Sep 27, 2025</span>
+                <span class="row-match"><span class="match-bar"><span class="match-fill" style="width:82%"></span></span>82%</span>
+                <div class="row-actions">
+                  <a href="#" class="row-action">View</a>
+                  <a href="#" class="row-action row-action-flag">Flag</a>
+                </div>
               </div>
-              <span class="row-platform"><span class="platform-icon platform-icon-facebook platform-icon-sm"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 9h3V6h-3a4 4 0 0 0-4 4v2H7v3h3v6h3v-6h3l1-3h-4v-2a1 1 0 0 1 1-1Z"/></svg></span>Facebook</span>
-              <span class="row-date">Sep 27, 2025</span>
-              <span class="row-match"><span class="match-bar"><span class="match-fill" style="width:82%"></span></span>82%</span>
-              <div class="row-actions">
-                <a href="#" class="row-action">View</a>
-                <a href="#" class="row-action row-action-flag">Flag</a>
-              </div>
-            </div>
 
-            <div class="trace-row">
-              <div class="trace-row-source">
-                <div class="row-thumb"></div>
-                <span>@xyz</span>
-              </div>
-              <span class="row-platform"><span class="platform-icon platform-icon-tiktok platform-icon-sm"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3v10.5a3.5 3.5 0 1 1-3.5-3.5c.35 0 .68.05 1 .14"/><path d="M15 3c.4 2.2 2 4 4.5 4.3"/></svg></span>TikTok</span>
-              <span class="row-date">Jan 08, 2026</span>
-              <span class="row-match"><span class="match-bar"><span class="match-fill" style="width:74%"></span></span>74%</span>
-              <div class="row-actions">
-                <a href="#" class="row-action">View</a>
-                <a href="#" class="row-action row-action-flag">Flag</a>
+              <div class="trace-row" data-platform="tiktok">
+                <div class="trace-row-source">
+                  <div class="row-thumb"></div>
+                  <span>@xyz</span>
+                </div>
+                <span class="row-platform"><span class="platform-icon platform-icon-tiktok platform-icon-sm"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3v10.5a3.5 3.5 0 1 1-3.5-3.5c.35 0 .68.05 1 .14"/><path d="M15 3c.4 2.2 2 4 4.5 4.3"/></svg></span>TikTok</span>
+                <span class="row-date">Jan 08, 2026</span>
+                <span class="row-match"><span class="match-bar"><span class="match-fill" style="width:74%"></span></span>74%</span>
+                <div class="row-actions">
+                  <a href="#" class="row-action">View</a>
+                  <a href="#" class="row-action row-action-flag">Flag</a>
+                </div>
               </div>
             </div>
           </div>
@@ -469,6 +491,7 @@
 
         <!-- Model breakdown -->
         <div class="breakdown-card">
+          <div class="upload-glow"></div>
           <h4 class="info-card-title">Detection Model Breakdown</h4>
 
           <div class="breakdown-row">
@@ -496,11 +519,11 @@
         </div>
 
         <div class="screen-actions screen-actions-end">
-          <button class="btn btn-secondary">
+          <button class="btn btn-secondary" id="exportPdfBtn">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg>
             Export Report (PDF)
           </button>
-          <button class="btn btn-primary">
+          <button class="btn btn-primary" id="addToCaseBtn">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="9"/></svg>
             Add to Case File
           </button>
@@ -512,7 +535,6 @@
 
 </div>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script src="script.js"></script>
 </body>
 </html>
