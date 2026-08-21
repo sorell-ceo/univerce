@@ -1,6 +1,6 @@
 /* ============ SUPABASE ============ */
-const SUPABASE_URL = 'YOUR_SUPABASE_URL';
-const SUPABASE_ANON_KEY = 'YOUR_SUPABASE_ANON_KEY';
+const SUPABASE_URL = 'https://qaqaoifundxxtnibfwuz.supabase.co';
+const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InFhcWFvaWZ1bmR4eHRuaWJmd3V6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODcyMjc1OTEsImV4cCI6MjEwMjgwMzU5MX0.LQSWE19MT7n8sKD7Jh9n_Qdwwzd65GyYRaFBjJelbeM';
 const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 const MEDIA_BUCKET = 'case-media';
 
